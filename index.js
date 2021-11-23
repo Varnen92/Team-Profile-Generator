@@ -2,7 +2,7 @@ const inquirer = require('inquirer')
 const Employee = require('./lib/Employee')
 const Manager = require('./lib/Manager')
 
-
+ 
 let createTeam = () => {
     inquirer
         .prompt({
@@ -31,17 +31,25 @@ let createTeam = () => {
 
 let createManager = () => {
     inquirer
-    .prompt([{
-        type: 'text',
-        name: 'id',
-        message: 'Please enter the ID Number of the team member:', 
-    },
-    {
-        type: 'text',
-        name: 'email',
-        message: 'Please enter the team member email:',
+        .prompt([
+            {
+                type: 'text',
+                name: 'name',
+                message: 'Please enter the name of the team member:'
+            },
 
-    }])
-    .then(res => console.log(res))
+            {
+                type: 'text',
+                name: 'id',
+                message: 'Please enter the ID Number of the team member:',
+            },
+            {
+                type: 'text',
+                name: 'email',
+                message: 'Please enter the team member email:',
+
+            }])
+        .then(res => console.log(res))
 }
-    createManager()
+createTeam() 
+
