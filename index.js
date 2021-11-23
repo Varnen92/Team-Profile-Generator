@@ -4,11 +4,46 @@ const Employee = require('./lib/Employee')
 const Manager = require('./lib/Manager')
 const Intern = require('./lib/Intern')
 const Engineer = require('./lib/Engineer')
-var teamMembers = [] 
+var teamMembers = []
 
 
 
 let createManager = () => {
+    inquirer
+        .prompt([
+            {
+                type: 'text',
+                name: 'name',
+                message: 'Please enter the name of the team Manager:'
+            },
+
+            {
+                type: 'text',
+                name: 'id',
+                message: 'Please enter the ID Number of the team Manager:',
+            },
+            {
+                type: 'text',
+                name: 'email',
+                message: 'Please enter the team Manager email:',
+
+            },
+            {
+                type: 'text',
+                name: 'office',
+                message: 'Please enter the office number for the team Manager:'
+            }
+
+        ])
+        .then(data => {
+            const manager = new Manager(data.name, data.id, data.email, data.office)
+            teamMembers.push(manager)
+            console.log(teamMembers)
+            teamPrompt()
+        })
+}
+
+let createEngineer = () => {
     inquirer
         .prompt([
             {
@@ -29,22 +64,54 @@ let createManager = () => {
 
             },
             {
-                type:'text',
-                name: 'office',
-                message: 'Please enter your office number:'
+                type: 'text',
+                name: 'github',
+                message: 'Please enter your GitHub:'
             }
-        
+
         ])
         .then(data => {
-            const manager = new Manager(data.name, data.id, data.email, data.office)
-            teamMembers.push(manager)
+            const engineer = new Engineer(data.name, data.id, data.email, data.github)
+            teamMembers.push(engineer)
             console.log(teamMembers)
-            teamPrompt()})
+            teamPrompt()
+        })
 }
 
-let createEngineer = () => {
+
+let createIntern = () => {
     inquirer
-    .prompt([])
+        .prompt([
+            {
+                type: 'text',
+                name: 'name',
+                message: 'Please enter the name of the team member:'
+            },
+
+            {
+                type: 'text',
+                name: 'id',
+                message: 'Please enter the ID Number of the team member:',
+            },
+            {
+                type: 'text',
+                name: 'email',
+                message: 'Please enter the team member email:',
+
+            },
+            {
+                type: 'text',
+                name: 'school',
+                message: 'Please enter your school name:'
+            }
+
+        ])
+        .then(data => {
+            const intern = new Intern(data.name, data.id, data.email, data.school)
+            teamMembers.push(intern)
+            console.log(teamMembers)
+            teamPrompt()
+        })
 }
 
 let teamPrompt = () => {
@@ -69,5 +136,5 @@ let teamPrompt = () => {
             }
         })
 }
-createManager() 
+createManager()
 
