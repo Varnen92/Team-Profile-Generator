@@ -15,5 +15,7 @@ A showcase of Node.JS and utilizing user inputs in the console to create a dynam
 
 ## Preview Video
 
+https://watch.screencastify.com/v/2Hsqx73EDDrNN2P2epmM
+
 ## Contribution
 Fully Built by Robert Sandoval
