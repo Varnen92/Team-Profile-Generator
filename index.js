@@ -4,6 +4,7 @@ const Employee = require('./lib/Employee')
 const Manager = require('./lib/Manager')
 const Intern = require('./lib/Intern')
 const Engineer = require('./lib/Engineer')
+const renderPage = require('./src/generateWebpage')
 var teamMembers = []
 
 
@@ -38,7 +39,6 @@ let createManager = () => {
         .then(data => {
             const manager = new Manager(data.name, data.id, data.email, data.office)
             teamMembers.push(manager)
-            console.log(teamMembers)
             teamPrompt()
         })
 }
@@ -73,7 +73,6 @@ let createEngineer = () => {
         .then(data => {
             const engineer = new Engineer(data.name, data.id, data.email, data.github)
             teamMembers.push(engineer)
-            console.log(teamMembers)
             teamPrompt()
         })
 }
@@ -109,7 +108,6 @@ let createIntern = () => {
         .then(data => {
             const intern = new Intern(data.name, data.id, data.email, data.school)
             teamMembers.push(intern)
-            console.log(teamMembers)
             teamPrompt()
         })
 }
@@ -131,7 +129,7 @@ let teamPrompt = () => {
                     createIntern()
                     break;
                 case "No more members!":
-                    // add fswrite later
+                    fs.writeFileSync("./dist/Team-Profile.html",renderPage(teamMembers), "utf-8")                  
                     break
             }
         })
